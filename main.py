@@ -1,9 +1,13 @@
 from spy_details import spy_salutation,spy_name,spy_age,spy_rating
 print ("Welcome to spychat!! let's get started")
 
-STATUS_MSG_LIST=['On Mission','JAMES BOND','SHERLOCK HOLMES','DETECTING','Spychat only']#creation of list of status msgs
+STATUS_MSG_LIST=['On Mission','JAMES BOND','SHERLOCK HOLMES','DETECTING','Spychat only']#creation of list containing status
+FRIEND_NAME=[]
+FRIEND_AGE=[]
+FRIEND_RATING=[]
+FRIEND_ONLINE=[]
 
-def add_status(current_status_msg):#func creation
+def add_status(current_status_msg):#func creation for adding status
     if current_status_msg == None:
         print ("You don\'t have any status right now")
     else:
@@ -25,7 +29,28 @@ def add_status(current_status_msg):#func creation
         STATUS_MSG_LIST.append(put_status)
     else:
         print "Invalid choice "
-    return put_status
+    return put_status #return the status to be put
+
+
+def add_friend():#func creation for adding frnd
+    frnd_name=raw_input("What is your name?")#asking for details n appending them
+    frnd_salutation=raw_input("What should I call you? mr ms dr er")
+    frnd_salutation=frnd_salutation.upper()
+    frnd_name=frnd_salutation+"."+frnd_name
+    frnd_age=input("What is you age?")
+    frnd_rating=input("Tell me your rating")
+    frnd_online=True
+
+    if len(frnd_name)>2 and 50>=frnd_age>=12 and frnd_rating>=spy_rating:
+        FRIEND_NAME.append(frnd_name)
+        FRIEND_AGE.append(frnd_age)
+        FRIEND_RATING.append(frnd_rating)
+        FRIEND_ONLINE.append(True)
+    else:
+        print"The details entered do not meet the requirement to be your friend"
+
+    return len(FRIEND_NAME)
+
 
 
 def spychat(spy_salutation,spy_name,spy_age,spy_rating):#func creation
@@ -62,15 +87,16 @@ def spychat(spy_salutation,spy_name,spy_age,spy_rating):#func creation
     else:
         print "Please choose a valid menu choice"
 
-    show_menu = True
+    show_menu = True #menucoice creation for features
     while show_menu:
         menu_choice_for_features = input(
             "Which feature do you want to explore?\n 1.Add a status update\n 2.Add a friend\n 3.Send a secret message\n 4.Read a secret message\n 5.Read chats from a user\n 6.Close application\n")
         if menu_choice_for_features == 1:
-            updated_status_msg = add_status(current_status_msg)
+            updated_status_msg = add_status(current_status_msg)#addstatus func call
             print "YOUR STATUS:" + updated_status_msg
         elif menu_choice_for_features == 2:
-            print "2"
+            updated_frnds=add_friend()#addfriend func call
+            print "The no of friends are"+" "+str(updated_frnds)
         elif menu_choice_for_features == 3:
             print "3"
         elif menu_choice_for_features == 4:
