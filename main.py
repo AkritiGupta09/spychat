@@ -1,9 +1,31 @@
 from spy_details import spy
+from steganography.steganography import Steganography
 print ("Welcome to spychat!! let's get started")
 
 NEW_USER_DEATAILS=[]
 STATUS_MSG_LIST=['On Mission','JAMES BOND','SHERLOCK HOLMES','DETECTING','Spychat only']#creation of list containing status
-FRIEND_DETAILS=[]
+FRIEND_DETAILS=[{'name':'shefali','age':21,'rating':5.6,'online':True},{'name':'shivani','age':22,'rating':4.5,'online':True}]
+
+
+def select_a_frnd():#func creation to select af frnd
+    sr_no=1
+    for frnd in FRIEND_DETAILS:
+        print str(sr_no)+"."+frnd['name']
+        sr_no=sr_no+1
+
+    choose_frnd=input("Choose a friend:")
+    actual_frnd=FRIEND_DETAILS[choose_frnd-1]
+
+    return actual_frnd
+
+def send_a_msg():
+    chosen_frnd=select_a_frnd()
+    original_img=raw_input("Write a name of the image with which you to encode the image:")
+    secret_msg=raw_input("Write the message which you want to encrypt:")
+    output_path="OUTPUT.jpeg"
+    Steganography.encode(original_img,output_path,secret_msg)
+    print "MESSAGE IS ENCRYPTED!"
+
 
 def add_status(current_status_msg):#func creation for adding status
     if current_status_msg == None:
@@ -100,7 +122,7 @@ def spychat(spy_salutation,spy_name,spy_age,spy_rating):#func creation
             updated_frnds=add_friend()#addfriend func call
             print "The no of friends are"+" "+str(updated_frnds)
         elif menu_choice_for_features == 3:
-            print "3"
+            send_a_msg()
         elif menu_choice_for_features == 4:
             print "4"
         elif menu_choice_for_features == 5:
@@ -145,7 +167,7 @@ elif ask_user.upper()=='N':
             else:
                 print("You really need to improve")
             print("Your details are:\n Name= %s.%s Age:%d Rating:%.3f"% (spy['salutation'],spy['name'],spy['age'],spy['rating']))#final print of details
-            spychat(spy['salutation'], spy['name'], spy['age'], spy['rating'])
+            spychat(spy['salutation'], spy['name'], spy['age'], spy['rating'])#func call
         else:
             print("You are retired now as your age is invalid")
     else:
