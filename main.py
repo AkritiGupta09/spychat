@@ -5,6 +5,7 @@ print ("Welcome to spychat!! let's get started")
 NEW_USER_DEATAILS=[]
 STATUS_MSG_LIST=['On Mission','JAMES BOND','SHERLOCK HOLMES','DETECTING','Spychat only']#creation of list containing status
 FRIEND_DETAILS=[{'name':'shefali','age':21,'rating':5.6,'online':True},{'name':'shivani','age':22,'rating':4.5,'online':True}]
+FRND_MSG=['hey']
 
 
 def select_a_frnd():#func creation to select af frnd
@@ -19,13 +20,19 @@ def select_a_frnd():#func creation to select af frnd
     return actual_frnd
 
 def send_a_msg():
-    chosen_frnd=select_a_frnd()
+    chosen_frnd_to_send=select_a_frnd()
     original_img=raw_input("Write a name of the image with which you to encode the image:")
     secret_msg=raw_input("Write the message which you want to encrypt:")
     output_path="OUTPUT.jpeg"
     Steganography.encode(original_img,output_path,secret_msg)
     print "MESSAGE IS ENCRYPTED!"
 
+def read_a_msg():
+    chosen_frnd_to_read=select_a_frnd()
+    output_img_name=raw_input("Select the image from which data is to be decoded:")
+    decrypted_text=Steganography.decode(output_img_name)
+    print 'Your decoded message is:'+decrypted_text
+    FRND_MSG.append(decrypted_text)
 
 def add_status(current_status_msg):#func creation for adding status
     if current_status_msg == None:
@@ -124,7 +131,7 @@ def spychat(spy_salutation,spy_name,spy_age,spy_rating):#func creation
         elif menu_choice_for_features == 3:
             send_a_msg()
         elif menu_choice_for_features == 4:
-            print "4"
+            read_a_msg()
         elif menu_choice_for_features == 5:
             print "5"
         elif menu_choice_for_features == 6:
