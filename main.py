@@ -1,14 +1,16 @@
 from spy_details import spy
 from steganography.steganography import Steganography
+from datetime import datetime
+
 print ("Welcome to spychat!! let's get started")
 
 NEW_USER_DEATAILS=[]
 STATUS_MSG_LIST=['On Mission','JAMES BOND','SHERLOCK HOLMES','DETECTING','Spychat only']#creation of list containing status
-FRIEND_DETAILS=[{'name':'shefali','age':21,'rating':5.6,'online':True},{'name':'shivani','age':22,'rating':4.5,'online':True}]
-FRND_MSG=['hey']
+FRIEND_DETAILS=[{'name':'shefali','age':21,'rating':5.6,'online':True,'chats':[]},{'name':'shivani','age':22,'rating':4.5,'online':True,'chats':[]}]
 
 
-def select_a_frnd():#func creation to select af frnd
+
+def select_a_frnd():#func creation to select a frnd
     sr_no=1
     for frnd in FRIEND_DETAILS:
         print str(sr_no)+"."+frnd['name']
@@ -16,23 +18,32 @@ def select_a_frnd():#func creation to select af frnd
 
     choose_frnd=input("Choose a friend:")
     actual_frnd=FRIEND_DETAILS[choose_frnd-1]
+    #print "The message will be sent to" + actual_frnd####error
 
     return actual_frnd
 
-def send_a_msg():
+def send_a_msg():#func created to send a msg
     chosen_frnd_to_send=select_a_frnd()
     original_img=raw_input("Write a name of the image with which you to encode the image:")
     secret_msg=raw_input("Write the message which you want to encrypt:")
     output_path="OUTPUT.jpeg"
     Steganography.encode(original_img,output_path,secret_msg)
+
+    user_chat={'message':secret_msg,'time_of_msg':datetime.now(),'sender_you':True}#dic creation for timestamp
     print "MESSAGE IS ENCRYPTED!"
 
-def read_a_msg():
+    FRIEND_DETAILS[chosen_frnd_to_send]['chats'].append(user_chat)
+
+def read_a_msg():#funccreated to send a msg
     chosen_frnd_to_read=select_a_frnd()
     output_img_name=raw_input("Select the image from which data is to be decoded:")
     decrypted_text=Steganography.decode(output_img_name)
-    print 'Your decoded message is:'+decrypted_text
-    FRND_MSG.append(decrypted_text)
+
+    user_chat = {'message': output_img_name, 'time_of_msg': datetime.now(), 'sender_you': False}  # dic creation for timestamp
+    FRIEND_DETAILS[chosen_frnd_to_read]['chats'].append(user_chat)
+
+    print 'Your decoded message is:' + decrypted_text
+
 
 def add_status(current_status_msg):#func creation for adding status
     if current_status_msg == None:
