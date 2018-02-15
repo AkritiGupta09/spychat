@@ -18,7 +18,7 @@ def select_a_frnd():#func creation to select a frnd
 
     choose_frnd=input("Choose a friend:")
     actual_frnd=FRIEND_DETAILS[choose_frnd-1]
-    #print "The message will be sent to" + actual_frnd####error
+    print "The message will be sent to" +str(actual_frnd)
 
     return actual_frnd
 
