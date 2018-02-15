@@ -1,6 +1,8 @@
 from spy_details import spy
 from steganography.steganography import Steganography
 from datetime import datetime
+import csv
+
 
 print ("Welcome to spychat!! let's get started")
 
@@ -39,7 +41,7 @@ def read_a_msg():#funccreated to send a msg
     output_img_name=raw_input("Select the image from which data is to be decoded:")
     decrypted_text=Steganography.decode(output_img_name)
 
-    user_chat = {'message': output_img_name, 'time_of_msg': datetime.now(), 'sender_you': False}  # dic creation for timestamp
+    user_chat = {'message': decrypted_text, 'time_of_msg': datetime.now(), 'sender_you': False}  # dic creation for timestamp
     FRIEND_DETAILS[chosen_frnd_to_read]['chats'].append(user_chat)
 
     print 'Your decoded message is:' + decrypted_text
@@ -84,6 +86,9 @@ def add_friend():#func creation for adding frnd
 
     if len(frnd['name'])>2 and 50>=frnd['age']>=12 and frnd['rating']>=spy['rating']:
         FRIEND_DETAILS.append(frnd)
+        with open('friends.csv', 'a') as friend_data:
+            writer=csv.writer(friend_data)
+            writer.writerow(frnd['salutation'],frnd['name'],frnd['age'],frnd['rating'],frnd['online'])
 
     else:
         print"The details entered do not meet the requirement to be your friend"
