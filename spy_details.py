@@ -19,6 +19,8 @@ friend_three=Spy("arshia",'ms',25,5.4)
 FRIEND_DETAILS=[friend_one,friend_two,friend_three]
 
 
+
+
 class Newuser:
     def __init__(self,newuser_name,newuser_age,newuser_rating):
         self.newuser_name=newuser_name

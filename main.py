@@ -6,6 +6,9 @@ import time
 import csv
 
 
+
+
+
 print ("Welcome to spychat!! let's get started")
 
 STATUS_MSG_LIST=['On Mission','JAMES BOND','SHERLOCK HOLMES','DETECTING','Spychat only']#creation of list containing status
@@ -59,6 +62,8 @@ def send_a_msg():#func created to send a msg
 
     user_chat=Chatmsgs(secret_msg,time,sender_you)#objct creation
     print "MESSAGE IS ENCRYPTED!"+"at"+time.strftime("%a ,%d %m %Y, %H:%M")
+
+
     FRIEND_DETAILS[chosen_frnd_to_send].chats.append(user_chat)
 
     with open('chats.csv', 'a') as chats_data:#save to csv
@@ -75,7 +80,11 @@ def read_a_msg():#funccreated to send a msg
     sender_you=False
     user_chat=Chatmsgs(decrypted_text,time,sender_you)#objctcreation
     print 'Your decoded message is:' + decrypted_text
-    FRIEND_DETAILS[chosen_frnd_to_read].chats.append(user_chat)
+    if decrypted_text=='SOS' or decrypted_text=='Help me' or decrypted_text=='M dying!' or decrypted_text=='Save me':
+        print"Dont worry we are coming for rescue!"
+        FRIEND_DETAILS[chosen_frnd_to_read].chats.append(user_chat)
+    else:
+        FRIEND_DETAILS[chosen_frnd_to_read].chats.append(user_chat)
 
 
 def add_status(current_status_msg):#func creation for adding status
