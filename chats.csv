@@ -1,0 +1,8 @@
+secret_msg,time,sender_you
+hi m spy1,Sun,18Feb2018 3:00,True
+hi m spy2,Sun,18Feb2018 3:10,True
+hi m spy3,Sun,18Feb2018 3:20,False<spy_details.Spy instance at 0x000000000263DC88>,hi,2018-02-18 17:49:19.372000
+<spy_details.Spy instance at 0x000000000252DA48>,m in danger,2018-02-18 18:11:58.042000
+<spy_details.Spy instance at 0x00000000022EE948>,save me ,2018-02-18 18:14:44.020000
+<spy_details.Spy instance at 0x000000000234E948>,hoooo,2018-02-18 18:20:34.152000
+<spy_details.Spy instance at 0x000000000259FE08>,onn mision,2018-02-18 18:33:44.935000
