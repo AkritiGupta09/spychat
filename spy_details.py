@@ -26,11 +26,12 @@ class Newuser:
         self.newuser_rating=newuser_rating
 
 class Friend:
-    def __init__(self,salutation,name,age,rating):
+    def __init__(self,salutation,name,age,rating,online):
         self.salutation=salutation
         self.name=name
         self.age=age
         self.rating=rating
+        self.online=online
 
 
 class Chatmsgs:

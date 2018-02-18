@@ -105,18 +105,20 @@ def add_status(current_status_msg):#func creation for adding status
 
 def add_friend():#func creation for adding frnd
 
-    frnd=Friend('','',0,0.0)#object creation
 
     frnd_name=raw_input("What is your name?")#asking for details n appending them
     frnd_salutation=raw_input("What should I call you? mr ms dr er")
-    frnd_salutation=frnd.salutation.upper()
-    frnd_name=frnd.salutation+"."+" "+frnd.name
+    frnd_salutation=frnd_salutation.upper()
+    frnd_name=frnd_salutation+"."+" "+frnd_name
     frnd_age=input("What is you age?")
     frnd_rating=input("Tell me your rating")
     frnd_online=True
 
     if len(frnd_name)>2 and 50>=frnd_age>=12 and frnd_rating>=spy.rating:
+
+        frnd = Friend(frnd_salutation,frnd_name,frnd_age,frnd_rating,frnd_online)  # object creation
         FRIEND_DETAILS.append(frnd)
+
         with open('friends1.csv', 'a') as friends_data:
             writer=csv.writer(friends_data)
             writer.writerow([frnd.name,frnd.age,frnd.rating,frnd.online])
